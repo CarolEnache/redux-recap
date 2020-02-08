@@ -18,14 +18,14 @@ function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
       return [
-        ...state.todos,
+        ...state,
         {
           text: action.text,
           completed: false
         }
       ];
     case TOGGLE_TODO:
-      return state.todos.map((todo, index) => {
+      return state.map((todo, index) => {
         if (index === action.index) {
           return Object.assign({}, todo, {
             completed: !todo.completed

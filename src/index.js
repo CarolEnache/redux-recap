@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import todoApp from './redux/reducers';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import './index.css';
+/*
+You may optionally specify the initial state as the second argument to createStore().
+This is useful for hydrating the state of the client to match the state of a Redux application running on the server.
+*/
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// const store = createStore(todoApp, window.STATE_FROM_SERVER)
+const store = createStore(todoApp);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
